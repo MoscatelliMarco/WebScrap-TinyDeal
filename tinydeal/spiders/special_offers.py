@@ -46,7 +46,7 @@ class SpecialOffersSpider(scrapy.Spider):
         df[['discounted_price', 'original_price']] = df[['discounted_price', 'original_price']].astype(float)
 
         # Calculate discount and sort dataframe by it
-        df['discount'] = (1 - df['discounted_price'] / df['original_price']).round(4) * 100
+        df['discount'] = ((1 - df['discounted_price'] / df['original_price']) * 100).round(2)
         df = df.sort_values(by='discount', ascending=False)
 
         # Remove NaNs and reset index
